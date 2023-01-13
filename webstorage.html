@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Web Storage</title>
+    <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+    
+</head>
+<body>
+    <style>
+        body{
+            background-color: rgb(85,130,130);
+            text-align: center;
+            color: aliceblue;
+            
+        }
+        div{
+            margin-top: 300px;
+            padding: 10px;
+        }
+        input{
+            border-radius: 5px;
+            border-color: rgb(114, 154, 140);
+        }
+        .botao{
+            background-color: rgb(209, 220, 216);
+          
+        }
+    </style>
+
+    <form action="" id="form"></form>
+        <div>
+            <form action="" id="form">
+            <p>RGM: <input type="text" id="rgm"></p>
+            <p>Nome: <input type="text" id="nome"></p>
+            <p>Profissão: <input type="text" id="profissao"></p>
+            <p>CPF: <input type="text" id="cpf"></p>
+            <p><input class='botao' type="button" value="Gravar Cookies" id="gravar"> <input class='botao' type="button" value="Carregar Cookies" id="carregar"> <input type="button"
+                value="Eliminar Cookies" class='botao' id="eliminar"></p>
+        </div>
+    </form>
+    <script>
+        $('#gravar').click(gravar)
+        $('#carregar').click(carregar)
+        $('#eliminar').click(eliminar)
+
+
+        function gravar(){
+            if ($('#rgm').val()!=''){
+                localStorage.setItem('rgm',$('#rgm').val(), {expires: 5})
+                localStorage.setItem('nome',$('#nome').val(), {expires: 5})
+                localStorage.setItem('profissao',$('#profissao').val(), {expires: 5})
+                localStorage.setItem('cpf',$('#cpf').val(), {expires: 5})
+                limparCampos()
+                if (localStorage.getItem('nome') != null){
+                    alert('Cookies Carregados');
+                }
+            }else{
+                alert('Por favor preencha os campos')
+            }
+            
+        }
+        function carregar(){
+            if (localStorage.getItem('nome') != null){
+                $('#rgm').val(localStorage.getItem('rgm'))
+                $('#nome').val(localStorage.getItem('nome'))
+                $('#profissao').val(localStorage.getItem('profissao'))
+                $('#cpf').val(localStorage.getItem('cpf'))
+            }else{
+                alert('Nenhum Cookie encontrado')
+            }
+        }
+        function eliminar(){
+            if (localStorage.getItem('nome') != null){
+                localStorage.clear()
+                // ou remover individualmente localStorage.removeItem('nome')
+            }else{
+                alert('Nenhum Cookie encontrado')
+            }
+            limparCampos()
+        }
+
+
+
+        function limparCampos(){
+            $('#rgm').val(null)
+            $('#nome').val(null)
+            $('#profissao').val(null)
+            $('#cpf').val(null)
+        }
+    </script>
+</body>
+</html>
