@@ -1,2 +1,2 @@
-# estudosWebStorage
-Fiz este programinha simples durante meus estudos de Web Storage!
+# Web Storage Studies
+I do this simple program during my Web Storage studies!
